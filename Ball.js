@@ -3,11 +3,13 @@ export default class Ball {
     #posX; 
     #posY;
     #speedX;
+    #speedY;
     constructor(canvas) {
         this.#canvas = canvas;
         this.#posX = this.#canvas.getWidth() / 2;
         this.#posY = this.#canvas.getHeight() / 2;
         this.#speedX = 5;
+        this.#speedY = 7;
     }
 
     drawBall() {
@@ -23,9 +25,14 @@ export default class Ball {
 
     #moveBall() {
         this.#posX += this.#speedX;
+        this.#posY += this.#speedY;
 
         if(this.#posX > this.#canvas.getWidth() || this.#posX < 0) {
-            this.#speedX *= -1;
+            this.#speedX = -this.#speedX;
+        }
+
+        if(this.#posY > this.#canvas.getHeight() || this.#posY < 0) {
+            this.#speedY = -this.#speedY;
         }
     }
 }
