@@ -18,7 +18,7 @@ export default class Controller {
     run() {
         this.#indexInterval = setInterval(() => {
 
-            console.log("run controller!!!")
+            // console.log("run controller!!!")
             this.#canvas.refresh();
             this.#ball.drawBall();            
             this.#paddle.drawPaddle();

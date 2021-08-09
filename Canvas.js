@@ -2,6 +2,7 @@ export default class Canvas {
      #canvas;
      #ctx;
      #color;
+     #mouseX;
       constructor(width, height, color) {
         this.#color = color;
         
@@ -13,22 +14,36 @@ export default class Canvas {
         this.#ctx = this.#canvas.getContext('2d');
         this.#ctx.fillStyle = color;
         this.#ctx.fillRect(0,0,width, height);
-      }
-
-      refresh() {
+        this.addInnerEventListener();
+        this.#mouseX = 200;
+    }
+    
+    refresh() {
         this.#ctx.fillStyle = this.#color;
         this.#ctx.fillRect(0,0,this.#canvas.width, this.#canvas.height);
-      }
+    }
+    
+    addInnerEventListener(callBack) {
+        this.#canvas.addEventListener('mousemove', this.mouse, false);
+    }
 
-      getHeight() {
-          return this.#canvas.height;
-      }
+    mouse = (evt) => {
+        this.#mouseX = evt.clientX;
+    }
 
-      getWidth() {
-          return this.#canvas.width;
-      }
+    getMouseX() {
+        return this.#mouseX;
+    }
 
-      getCTX() {
-          return this.#ctx;
-      }
+    getHeight() {
+        return this.#canvas.height;
+    }
+
+    getWidth() {
+        return this.#canvas.width;
+    }
+
+    getCTX() {
+        return this.#ctx;
+    }
 }
