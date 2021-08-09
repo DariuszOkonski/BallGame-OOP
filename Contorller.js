@@ -1,7 +1,7 @@
 export default class Controller {
 
     run() {
-        console.log("run controller")
+        console.log("run controller!!!")
     }
 }
 
