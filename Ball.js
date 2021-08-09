@@ -13,11 +13,10 @@ export default class Ball {
     }
 
     drawBall() {
-        this.#canvas.refresh();
 
         this.#canvas.getCTX().beginPath();
         this.#canvas.getCTX().fillStyle = 'white';
-        this.#canvas.getCTX().arc(this.#posX, this.#posY, 15, 0, 2*Math.PI);
+        this.#canvas.getCTX().arc(this.#posX, this.#posY, 10, 0, 2*Math.PI);
         this.#canvas.getCTX().fill();
 
         this.#moveBall();
