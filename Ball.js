@@ -1,5 +1,7 @@
+import {BALL} from './Utilities.js';
+
 export default class Ball {
-    #ballDiameter = 10;
+    #ballDiameter = BALL.diameter;
     #canvas;
     #posX; 
     #posY;
@@ -8,8 +10,8 @@ export default class Ball {
     constructor(canvas) {
         this.#canvas = canvas;
         this.#resetBall();
-        this.#speedX = 5;
-        this.#speedY = 5;
+        this.#speedX = BALL.speedX;
+        this.#speedY = BALL.speedY;
     }
 
     drawBall() {
@@ -21,8 +23,6 @@ export default class Ball {
 
         this.#moveBall();
     }
-
-
 
     getCurrentPosition() {
         return {
@@ -40,7 +40,7 @@ export default class Ball {
     #resetBall() {
         this.#posX = this.#canvas.getWidth() / 2;
         this.#posY = this.#canvas.getHeight() / 2;
-        this.#speedX =  Math.random() < 0.5 ? -5 : 5;
+        this.#speedX =  Math.random() < 0.5 ? -(BALL.speedX) : (BALL.speedX);
     }
 
     #moveBall() {

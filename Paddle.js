@@ -1,8 +1,10 @@
+import {BALL, PADDLE} from './Utilities.js';
+
 export default class Paddle {
     #canvas;
     #ball;
-    #paddleWidth = 100;
-    #paddleHeight = 5;
+    #paddleWidth = PADDLE.width;
+    #paddleHeight = PADDLE.height;
     #paddleHorizontalPosition;
 
     #paddlePositionXLeft;
@@ -35,7 +37,8 @@ export default class Paddle {
 
     #checkIfHitByBall() {
         let ball = this.#ball.getCurrentPosition();
-        if(ball.posY == this.#paddleHorizontalPosition && ball.posX >= this.#paddlePositionXLeft && ball.posX <= this.#paddlePositionXRight) {
+        if(ball.posY >= this.#paddleHorizontalPosition && ball.posY <= this.#paddleHorizontalPosition + this.#paddleHeight 
+            && ball.posX >= this.#paddlePositionXLeft && ball.posX <= this.#paddlePositionXRight) {
             let oneFifthOfPaddle = this.#paddleWidth / 5;
             let twoFifthOfPaddle = oneFifthOfPaddle * 2;
 
@@ -46,33 +49,33 @@ export default class Paddle {
 
             // left hard
             if(ball.posX >= this.#paddlePositionXLeft && ball.posX <= this.#paddlePositionXLeft + oneFifthOfPaddle) {
-                this.#ball.hitPaddle(-9, 5);
+                this.#ball.hitPaddle(BALL.leftHardPaddleHit, BALL.speedY);
                 console.log("left hard")
                 return;
             }
 
             if(ball.posX >= this.#paddlePositionXLeft + oneFifthOfPaddle && ball.posX <= this.#paddlePositionXLeft + twoFifthOfPaddle) {
-                this.#ball.hitPaddle(-3, 5);
+                this.#ball.hitPaddle(BALL.leftEasyPaddleHit, BALL.speedY);
                 console.log("left easy")
                 return;
             }            
             
             // right easy
             if(ball.posX <= this.#paddlePositionXRight - oneFifthOfPaddle && ball.posX >= this.#paddlePositionXRight - twoFifthOfPaddle) {
-                this.#ball.hitPaddle(3, 5);
+                this.#ball.hitPaddle(BALL.rightEasyPaddleHit, BALL.speedY);
                 console.log("right easy")
                 return;
             }
 
             // right hard
             if(ball.posX <= this.#paddlePositionXRight && ball.posX >= this.#paddlePositionXRight - oneFifthOfPaddle) {
-                this.#ball.hitPaddle(9, 5);
+                this.#ball.hitPaddle(BALL.rightHardPaddleHit, BALL.speedY);
                 console.log("right hard")
                 return;
             }
             
             
-            this.#ball.hitPaddle(0, 5)
+            this.#ball.hitPaddle(BALL.middlePaddleHit, BALL.speedY)
             console.log("middle")
         }
 
