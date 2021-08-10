@@ -1,4 +1,5 @@
 export default class Ball {
+    #ballDiameter = 10;
     #canvas;
     #posX; 
     #posY;
@@ -6,32 +7,58 @@ export default class Ball {
     #speedY;
     constructor(canvas) {
         this.#canvas = canvas;
-        this.#posX = this.#canvas.getWidth() / 2;
-        this.#posY = this.#canvas.getHeight() / 2;
+        this.#resetBall();
         this.#speedX = 5;
-        this.#speedY = 7;
+        this.#speedY = 5;
     }
 
     drawBall() {
 
         this.#canvas.getCTX().beginPath();
         this.#canvas.getCTX().fillStyle = 'white';
-        this.#canvas.getCTX().arc(this.#posX, this.#posY, 10, 0, 2*Math.PI);
+        this.#canvas.getCTX().arc(this.#posX, this.#posY, this.#ballDiameter, 0, 2*Math.PI);
         this.#canvas.getCTX().fill();
 
         this.#moveBall();
+    }
+
+
+
+    getCurrentPosition() {
+        return {
+            posX: this.#posX,
+            posY: this.#posY
+        }
+    }
+
+    hitPaddle(speedX, speedY) {
+        this.#speedX = speedX;
+        this.#speedY = speedY;
+        this.#speedY = -this.#speedY;
+    }
+
+    #resetBall() {
+        this.#posX = this.#canvas.getWidth() / 2;
+        this.#posY = this.#canvas.getHeight() / 2;
+        this.#speedX =  Math.random() < 0.5 ? -5 : 5;
     }
 
     #moveBall() {
         this.#posX += this.#speedX;
         this.#posY += this.#speedY;
 
+        // ball hits left or right edge
         if(this.#posX > this.#canvas.getWidth() || this.#posX < 0) {
             this.#speedX = -this.#speedX;
         }
 
-        if(this.#posY > this.#canvas.getHeight() || this.#posY < 0) {
+        // ball hits top or bottom
+        if(this.#posY < 0) {
             this.#speedY = -this.#speedY;
+        }
+
+        if(this.#posY > this.#canvas.getHeight()) {
+            this.#resetBall();
         }
     }
 }
