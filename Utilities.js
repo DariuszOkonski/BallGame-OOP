@@ -1,7 +1,7 @@
 export const BALL = {
     diameter: 10,
-    speedX: 5,
-    speedY: 9,
+    speedX: 5, // horizontal speed
+    speedY: 11, // vertical speed
     leftHardPaddleHit: -9,
     leftEasyPaddleHit: -3,
     middlePaddleHit: 0,
@@ -11,5 +11,10 @@ export const BALL = {
 
 export const PADDLE = {
     width: 200,
-    height: 5
+    height: 10
+}
+
+export const CANVAS = {
+    width: 1200,
+    height: 800
 }

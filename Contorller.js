@@ -2,6 +2,8 @@ import Canvas from './Canvas.js';
 import Ball from './Ball.js';
 import Paddle from './Paddle.js';
 
+import {CANVAS} from './Utilities.js'
+
 export default class Controller {
     #canvas;
     #ball;
@@ -10,7 +12,7 @@ export default class Controller {
     #indexInterval;
 
     constructor() {
-        this.#canvas = new Canvas(800,600,'black')
+        this.#canvas = new Canvas(CANVAS.width,CANVAS.height,'black')
         this.#ball = new Ball(this.#canvas);
         this.#paddle = new Paddle(this.#canvas, this.#ball);
     }

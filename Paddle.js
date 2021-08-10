@@ -42,7 +42,7 @@ export default class Paddle {
             let oneFifthOfPaddle = this.#paddleWidth / 5;
             let twoFifthOfPaddle = oneFifthOfPaddle * 2;
 
-            console.log('OneFifth: ', oneFifthOfPaddle, twoFifthOfPaddle)
+            // console.log('OneFifth: ', oneFifthOfPaddle, twoFifthOfPaddle)
 
             // console.log("ball: ", ball.posX)
             // console.log("paddlePosition: ", this.#paddlePositionXLeft, this.#paddlePositionXRight)
@@ -50,33 +50,33 @@ export default class Paddle {
             // left hard
             if(ball.posX >= this.#paddlePositionXLeft && ball.posX <= this.#paddlePositionXLeft + oneFifthOfPaddle) {
                 this.#ball.hitPaddle(BALL.leftHardPaddleHit, BALL.speedY);
-                console.log("left hard")
+                // console.log("left hard")
                 return;
             }
 
             if(ball.posX >= this.#paddlePositionXLeft + oneFifthOfPaddle && ball.posX <= this.#paddlePositionXLeft + twoFifthOfPaddle) {
                 this.#ball.hitPaddle(BALL.leftEasyPaddleHit, BALL.speedY);
-                console.log("left easy")
+                // console.log("left easy")
                 return;
             }            
             
             // right easy
             if(ball.posX <= this.#paddlePositionXRight - oneFifthOfPaddle && ball.posX >= this.#paddlePositionXRight - twoFifthOfPaddle) {
                 this.#ball.hitPaddle(BALL.rightEasyPaddleHit, BALL.speedY);
-                console.log("right easy")
+                // console.log("right easy")
                 return;
             }
 
             // right hard
             if(ball.posX <= this.#paddlePositionXRight && ball.posX >= this.#paddlePositionXRight - oneFifthOfPaddle) {
                 this.#ball.hitPaddle(BALL.rightHardPaddleHit, BALL.speedY);
-                console.log("right hard")
+                // console.log("right hard")
                 return;
             }
             
             
             this.#ball.hitPaddle(BALL.middlePaddleHit, BALL.speedY)
-            console.log("middle")
+            // console.log("middle")
         }
 
     }
