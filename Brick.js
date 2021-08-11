@@ -22,6 +22,15 @@ export default class Brick {
         this.#canvas.getCTX().fill();
     }
 
+    getCurrentPosition() {
+        return {
+            posXLeft: this.#posX,
+            posXRight: this.#posX + this.#width,
+            posYTop: this.#posY,
+            posYBottom: this.#posY + this.#height
+        }
+    }
+
     getIsHit() {
         return this.#isHit;
     }

@@ -4,11 +4,13 @@ import { BRICK, CANVAS } from './Utilities.js';
 export default class BrickWall {
     #canvas;
     #bricks;
+    #ball;
     #wallDrawStartPoint = 3;
     #numberOfRows = 4;
-    #bricksQuantity = 0;
-    constructor(canvas) {
+    #isEndGame = false;
+    constructor(canvas, ball) {
         this.#canvas = canvas;
+        this.#ball = ball;
         this.#bricks = []
 
         this.createBricks();
@@ -20,21 +22,34 @@ export default class BrickWall {
             let tempBricks = [];
             for(let j = 0; j < CANVAS.width; j += BRICK.width) {
                 tempBricks.push(new Brick(j, ((i + this.#wallDrawStartPoint) * BRICK.height), this.#canvas))
-                this.#bricksQuantity++;
             }
             this.#bricks.push(tempBricks)            
         }
-    
-        console.log(this.#bricksQuantity)
     }
 
     drawBricks() {
+        let allHit = true;
         for(let i = 0; i < this.#bricks.length; i++) {
             for(let j = 0; j < this.#bricks[i].length; j++) {
+                this.#checkIfBrickHit(this.#bricks[i][j])
+                
                 if(!this.#bricks[i][j].getIsHit()) {
-                    this.#bricks[i][j].drawBrick();                    
+                    this.#bricks[i][j].drawBrick();
+                    allHit = false;
                 }
             }
         }
+        this.#isEndGame = allHit;
+    }
+
+    #checkIfBrickHit(brick) {
+        let tempBall = this.#ball.getCurrentPosition()
+        let tempBrick = brick.getCurrentPosition();
+
+
+        if(tempBall.posX > tempBrick.posXLeft && tempBall.posX < tempBrick.posXRight &&
+            tempBall.posY < tempBrick.posYBottom && tempBall.posY > tempBrick.posYTop) {
+                brick.setHit();
+            }
     }
 }

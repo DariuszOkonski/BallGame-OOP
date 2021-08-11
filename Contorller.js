@@ -17,7 +17,7 @@ export default class Controller {
         this.#canvas = new Canvas(CANVAS.width,CANVAS.height,'black')
         this.#ball = new Ball(this.#canvas);
         this.#paddle = new Paddle(this.#canvas, this.#ball);
-        this.#brickWall = new BrickWall(this.#canvas);
+        this.#brickWall = new BrickWall(this.#canvas, this.#ball);
     }
 
 
