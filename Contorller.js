@@ -2,8 +2,8 @@ import Canvas from './Canvas.js';
 import Ball from './Ball.js';
 import Paddle from './Paddle.js';
 
-import {BRICK, CANVAS} from './Utilities.js'
-import Brick from './Brick.js';
+import {CANVAS} from './Utilities.js'
+import BrickWall from './BrickWall.js';
 
 export default class Controller {
     #canvas;
@@ -11,13 +11,13 @@ export default class Controller {
     #paddle;
     #framesPerSec = 1000 / 30;
     #indexInterval;
+    #brickWall;
 
-    #brick;
     constructor() {
         this.#canvas = new Canvas(CANVAS.width,CANVAS.height,'black')
         this.#ball = new Ball(this.#canvas);
         this.#paddle = new Paddle(this.#canvas, this.#ball);
-        this.#brick = new Brick(10, 10, this.#canvas);
+        this.#brickWall = new BrickWall(this.#canvas);
     }
 
 
@@ -25,12 +25,10 @@ export default class Controller {
         this.#indexInterval = setInterval(() => {
 
             // console.log("run controller!!!")
-            this.#canvas.refresh();
-
-
+            this.#canvas.refresh();            
             this.#ball.drawBall();            
+            this.#brickWall.drawBricks();
             this.#paddle.drawPaddle();
-            this.#brick.drawBrick();
             
         }, this.#framesPerSec);
     }

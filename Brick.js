@@ -18,7 +18,7 @@ export default class Brick {
     drawBrick() {
         this.#canvas.getCTX().beginPath();
         this.#canvas.getCTX().fillStyle = this.#color;
-        this.#canvas.getCTX().rect(this.#posX, this.#posY, this.#width, this.#height);
+        this.#canvas.getCTX().rect(this.#posX, this.#posY, this.#width - BRICK.gap, this.#height - BRICK.gap);
         this.#canvas.getCTX().fill();
     }
 
