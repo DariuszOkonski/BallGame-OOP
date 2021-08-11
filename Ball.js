@@ -24,6 +24,10 @@ export default class Ball {
         this.#moveBall();
     }
 
+    changeHorizontalDirection() {
+        this.#speedY = -this.#speedY;
+    }
+
     getCurrentPosition() {
         return {
             posX: this.#posX,
