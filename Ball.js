@@ -10,8 +10,8 @@ export default class Ball {
     constructor(canvas) {
         this.#canvas = canvas;
         this.#resetBall();
-        this.#speedX = BALL.speedX;
-        this.#speedY = BALL.speedY; // remove -
+        this.#speedX = Math.random() < 0.5 ? BALL.speedX : -BALL.speedX;
+        this.#speedY = Math.random() < 0.5 ? BALL.speedY : -BALL.speedY; 
     }
 
     drawBall() {

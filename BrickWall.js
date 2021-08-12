@@ -5,7 +5,7 @@ export default class BrickWall {
     #canvas;
     #bricks;
     #ball;
-    #numberOfRows = 20;
+    #numberOfRows = 15;
     #rowStartingWall = 2;
     #isEndGame = false;
     constructor(canvas, ball) {
