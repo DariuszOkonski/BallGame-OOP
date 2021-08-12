@@ -3,6 +3,7 @@ export default class Canvas {
      #ctx;
      #color;
      #mouseX;
+     #mouseMoved = false;
       constructor(width, height, color) {
         this.#color = color;
         
@@ -23,6 +24,10 @@ export default class Canvas {
         this.#ctx.fillRect(0,0,this.#canvas.width, this.#canvas.height);
     }
 
+    getMouseMoved() {
+        return this.#mouseMoved;
+    }
+
     getOffSetLeft() {
         return this.#canvas.offsetLeft;
     }
@@ -37,6 +42,8 @@ export default class Canvas {
     }
 
     mouse = (evt) => {
+        if(!this.#mouseMoved)
+            this.#mouseMoved = true;
         this.#mouseX = evt.clientX;
     }
 

@@ -18,22 +18,32 @@ export default class Paddle {
 
         this.#paddleHorizontalPosition = this.#canvas.getHeight() * 0.9;
         this.#paddlePositionXLeft = this.#canvas.getWidth() / 2 - this.#paddleWidth / 2;
+    
+        // this.#firstDrawPaddle();
     }
 
     
-    drawPaddle() {
+    #firstDrawPaddle() {
         this.#canvas.getCTX().beginPath();
         this.#canvas.getCTX().fillStyle = 'white';
-        this.#canvas.getCTX().rect(this.#getMouseXPosition(), this.#paddleHorizontalPosition, this.#paddleWidth, this.#paddleHeight);
+        this.#canvas.getCTX().rect(this.#paddlePositionXLeft, this.#paddleHorizontalPosition, this.#paddleWidth, this.#paddleHeight);
+        this.#canvas.getCTX().fill();
+        console.log('working')
+    }
+
+    drawPaddle(isMouseMoved) {
+        this.#canvas.getCTX().beginPath();
+        this.#canvas.getCTX().fillStyle = 'white';
+        this.#canvas.getCTX().rect((isMouseMoved ? this.#getMouseXPosition() : this.#paddlePositionXLeft), this.#paddleHorizontalPosition, this.#paddleWidth, this.#paddleHeight);
         this.#canvas.getCTX().fill();
         
 
-        this.#updatePaddleEdgePosition();
-        this.#checkIfHitByBall();    
+        this.#updatePaddleEdgePosition(isMouseMoved);
+        this.#checkIfHitByBall();
     }
     
-    #updatePaddleEdgePosition() {
-        this.#paddlePositionXLeft = this.#getMouseXPosition();
+    #updatePaddleEdgePosition(isMouseMoved) {
+        this.#paddlePositionXLeft = isMouseMoved ? this.#getMouseXPosition() : this.#paddlePositionXLeft;
         this.#paddlePositionXRight = this.#paddlePositionXLeft + this.#paddleWidth;
     }
 

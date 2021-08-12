@@ -23,12 +23,10 @@ export default class Controller {
 
     run() {
         this.#indexInterval = setInterval(() => {
-
-            // console.log("run controller!!!")
             this.#canvas.refresh();            
             this.#ball.drawBall();            
             this.#brickWall.drawBricks();
-            this.#paddle.drawPaddle();
+            this.#paddle.drawPaddle(this.#canvas.getMouseMoved());
             
         }, this.#framesPerSec);
     }
