@@ -22,9 +22,18 @@ export default class Canvas {
         this.#ctx.fillStyle = this.#color;
         this.#ctx.fillRect(0,0,this.#canvas.width, this.#canvas.height);
     }
+
+    getOffSetLeft() {
+        return this.#canvas.offsetLeft;
+    }
     
     addInnerEventListener(callBack) {
         this.#canvas.addEventListener('mousemove', this.mouse, false);
+        // console.log(this.#canvas.offsetLeft)
+    }
+
+    keyDown = (evt) => {
+        console.log(evt.target)
     }
 
     mouse = (evt) => {

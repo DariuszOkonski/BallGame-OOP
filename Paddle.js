@@ -82,6 +82,6 @@ export default class Paddle {
     }
     
     #getMouseXPosition() {
-        return this.#canvas.getMouseX() - this.#paddleWidth / 2;
+        return this.#canvas.getMouseX() - this.#canvas.getOffSetLeft() - this.#paddleWidth / 2;
     }
 }
