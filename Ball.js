@@ -11,7 +11,7 @@ export default class Ball {
         this.#canvas = canvas;
         this.#resetBall();
         this.#speedX = BALL.speedX;
-        this.#speedY = -BALL.speedY; // remove -
+        this.#speedY = BALL.speedY; // remove -
     }
 
     drawBall() {

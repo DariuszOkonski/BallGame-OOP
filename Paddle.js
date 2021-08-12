@@ -3,6 +3,7 @@ import {BALL, PADDLE} from './Utilities.js';
 export default class Paddle {
     #canvas;
     #ball;
+    #brickWall;
     #paddleWidth = PADDLE.width;
     #paddleHeight = PADDLE.height;
     #paddleHorizontalPosition;
@@ -10,9 +11,10 @@ export default class Paddle {
     #paddlePositionXLeft;
     #paddlePositionXRight;
 
-    constructor(canvas, ball) {
+    constructor(canvas, ball, brickWall) {
         this.#canvas = canvas;
         this.#ball = ball;
+        this.#brickWall = brickWall;
 
         this.#paddleHorizontalPosition = this.#canvas.getHeight() * 0.9;
         this.#paddlePositionXLeft = this.#canvas.getWidth() / 2 - this.#paddleWidth / 2;
@@ -42,6 +44,12 @@ export default class Paddle {
             let oneFifthOfPaddle = this.#paddleWidth / 5;
             let twoFifthOfPaddle = oneFifthOfPaddle * 2;
 
+            
+            // if end game, then renew it
+            if(this.#brickWall.isGameEnd()) {
+                this.#brickWall.createBricks();
+            }
+
             // console.log('OneFifth: ', oneFifthOfPaddle, twoFifthOfPaddle)
 
             // console.log("ball: ", ball.posX)
@@ -49,27 +57,41 @@ export default class Paddle {
 
             // left hard
             if(ball.posX >= this.#paddlePositionXLeft && ball.posX <= this.#paddlePositionXLeft + oneFifthOfPaddle) {
-                this.#ball.hitPaddle(BALL.leftHardPaddleHit, BALL.speedY);
+                let leftSpeed = Math.round(BALL.leftHardPaddleHit * Math.random());
+                // console.log(leftSpeed)
+
+                this.#ball.hitPaddle(leftSpeed, BALL.speedY);
                 // console.log("left hard")
                 return;
             }
 
             if(ball.posX >= this.#paddlePositionXLeft + oneFifthOfPaddle && ball.posX <= this.#paddlePositionXLeft + twoFifthOfPaddle) {
-                this.#ball.hitPaddle(BALL.leftEasyPaddleHit, BALL.speedY);
+                let leftSpeed = Math.round(BALL.leftEasyPaddleHit * Math.random());
+                // console.log(leftSpeed)
+
+                
+                this.#ball.hitPaddle(leftSpeed, BALL.speedY);
                 // console.log("left easy")
                 return;
             }            
             
             // right easy
             if(ball.posX <= this.#paddlePositionXRight - oneFifthOfPaddle && ball.posX >= this.#paddlePositionXRight - twoFifthOfPaddle) {
-                this.#ball.hitPaddle(BALL.rightEasyPaddleHit, BALL.speedY);
+                let rightSpeed = Math.round(BALL.rightEasyPaddleHit * Math.random());
+                // console.log(rightSpeed)
+
+                this.#ball.hitPaddle(rightSpeed, BALL.speedY);
                 // console.log("right easy")
                 return;
             }
 
             // right hard
             if(ball.posX <= this.#paddlePositionXRight && ball.posX >= this.#paddlePositionXRight - oneFifthOfPaddle) {
-                this.#ball.hitPaddle(BALL.rightHardPaddleHit, BALL.speedY);
+                let rightSpeed = Math.round(BALL.rightHardPaddleHit * Math.random());
+                // console.log(rightSpeed)
+
+                
+                this.#ball.hitPaddle(rightSpeed, BALL.speedY);
                 // console.log("right hard")
                 return;
             }
@@ -77,6 +99,7 @@ export default class Paddle {
             
             this.#ball.hitPaddle(BALL.middlePaddleHit, BALL.speedY)
             // console.log("middle")
+
         }
 
     }

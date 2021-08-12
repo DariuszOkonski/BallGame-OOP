@@ -5,7 +5,8 @@ export default class BrickWall {
     #canvas;
     #bricks;
     #ball;
-    #numberOfRows = 10;
+    #numberOfRows = 20;
+    #rowStartingWall = 2;
     #isEndGame = false;
     constructor(canvas, ball) {
         this.#canvas = canvas;
@@ -16,11 +17,11 @@ export default class BrickWall {
     }
 
     createBricks() {
-        
+        this.#bricks = [];
         for(let i = 0; i < this.#numberOfRows; i++) {
             let tempBricks = [];
             for(let j = 0; j < CANVAS.width; j += BRICK.width) {
-                tempBricks.push(new Brick(j, (i * BRICK.height), this.#canvas))
+                tempBricks.push(new Brick(j, ((i + this.#rowStartingWall) * BRICK.height), this.#canvas))
             }
             this.#bricks.push(tempBricks)            
         }
@@ -39,6 +40,10 @@ export default class BrickWall {
             }
         }
         this.#isEndGame = allHit;
+    }
+
+    isGameEnd() {
+        return this.#isEndGame;
     }
 
     #checkIfBrickHit(brick) {

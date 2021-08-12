@@ -2,11 +2,11 @@ export const BALL = {
     diameter: 10,
     speedX: 5, // horizontal speed
     speedY: 11, // vertical speed 
-    leftHardPaddleHit: -9,
-    leftEasyPaddleHit: -3,
+    leftHardPaddleHit: -19,
+    leftEasyPaddleHit: -13,
     middlePaddleHit: 0,
-    rightEasyPaddleHit: 3,
-    rightHardPaddleHit: 9
+    rightEasyPaddleHit: 13,
+    rightHardPaddleHit: 19
 }
 
 export const PADDLE = {
@@ -20,7 +20,7 @@ export const CANVAS = {
 }
 
 export const BRICK = {
-    width: CANVAS.width / 10,
+    width: CANVAS.width / 15,
     height: 20,
     color: 'blue',
     gap: 2
