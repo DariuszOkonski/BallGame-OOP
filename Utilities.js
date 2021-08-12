@@ -20,8 +20,8 @@ export const CANVAS = {
 }
 
 export const BRICK = {
-    width: CANVAS.width / 15,
-    height: 25,
+    width: CANVAS.width / 10,
+    height: 30,
     color: 'blue',
-    gap: 1
+    gap: 0.2
 }
