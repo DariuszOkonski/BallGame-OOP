@@ -51,13 +51,13 @@ export default class Ball {
         this.#posX += this.#speedX;
         this.#posY += this.#speedY;
 
-        // ball hits left or right edge
-        if(this.#posX > this.#canvas.getWidth() || this.#posX < 0) {
+        // ball hits left or right edge, have to add && with speedX condition to prevent ball stack on the edge of canvas
+        if((this.#posX > this.#canvas.getWidth() && this.#speedX > 0.0) || (this.#posX < 0 && this.#speedX < 0.0)) {
             this.#speedX = -this.#speedX;
         }
 
         // ball hits top or bottom
-        if(this.#posY < 0) {
+        if(this.#posY < 0 && this.#speedY < 0.0) {
             this.#speedY = -this.#speedY;
         }
 

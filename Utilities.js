@@ -11,7 +11,7 @@ export const BALL = {
 
 export const PADDLE = {
     width: 200,
-    height: 10
+    height: 20
 }
 
 export const CANVAS = {
